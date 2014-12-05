@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  block poll
+    h1 Sortie d'équipe
+    p Quel(s) genre(s) d'activité(s) préférez-vous pour la sortie d'équipe ?
+
+    form
+      div(id="sortable")
+        div
+          p 1
+          label activité en équipe (karting, etc)
+          textarea
+        div
+          p 2
+          label restaurant
+          textarea
+        div
+          p 3
+          label conférence
+          textarea
+        div
+          p 4
+          label activité sportive
+          textarea
