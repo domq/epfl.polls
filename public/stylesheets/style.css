@@ -5,9 +5,6 @@ body {
 a {
   color: #00b7ff;
 }
-img {
-  filter: grayscale(0.5) blur(10px);
-}
 form li {
   border: 1px solid #f00;
   border-radius: 10px;
@@ -16,6 +13,7 @@ form li {
   background-color: #fff;
   background-repeat: no-repeat;
   background-size: 50px 50px;
+  -webkit-filter: grayscale(1);
 }
 form ul {
   background-color: #7fff00;
@@ -26,7 +24,9 @@ form label {
   background-color: #fff;
   cursor: inherit;
 }
-form li:hover,
+form li:hover {
+  -webkit-filter: none;
+}
 li {
   background-repeat: no-repeat;
   background-size: 50px 50px;
