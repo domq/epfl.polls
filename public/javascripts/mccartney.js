@@ -10,7 +10,6 @@ $(function() {
 
 function renumerate () {
   $("#sortable label").each(function(label){
-      alert(label.innerHTML);
   })
 }
 
