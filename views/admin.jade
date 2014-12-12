@@ -2,3 +2,13 @@ extends layout
 block content
     h1= title
     p Welcome to #{title}
+
+    form
+        label user
+            input(id="user" )
+        label password
+            input(id="pass" type="password")
+
+    p Even if you are not logged in, you can see the database contents!
+
+    p #{databaseContents}
