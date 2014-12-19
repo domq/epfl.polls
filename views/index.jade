@@ -8,17 +8,19 @@ block content
     h1 Sortie d'équipe
     p Quel(s) genre(s) d'activité(s) préférez-vous pour la sortie d'équipe ?
 
-    form
+    form(action="/submit" method="post")
       ul(id="sortable")
-        li(class="team")
+        li(id="team")
           label activité en équipe (karting, etc)
           textarea
-        li(class="food")
+        li(id="food")
           label restaurant
           textarea
-        li(class="conf")
+        li(id="conf")
           label conférence
           textarea
-        li(class="sport")
+        li(id="sport")
           label activité sportive
           textarea
+      input(type="text" name="user")
+      input(type="button" id="btnSubmit")

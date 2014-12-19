@@ -1,8 +1,9 @@
-var redis = require("redis"),
-client = redis.createClient();
-
 var express = require('express');
 var router = express.Router();
+
+var databaseUrl = "mydb"; // "username:password@example.com/mydb"
+var collections = ["users", "reports"]
+var db = require("mongojs").connect(databaseUrl, collections);
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -14,22 +15,24 @@ router.get('/admin', function(req, res) {
   function renderNow() {
     res.render('admin', { title: 'Admin', databaseContents: dboutput });
   }
-  client.keys("*", function (err, keys) {
-    var doneCount = 0;
-    for(var i = 0, len = keys.length; i < len; i++) {
-      dboutput +=keys[i];
 
-      client.get(keys[i], function (err, val) {
-        dboutput += val;
-        doneCount += 1;
-        if (doneCount == keys.length) {
-          renderNow();
-        }
-      });
-
-    }
-    //client.quit();
+  db.users.find({sex: "male"}, function(err, users) {
+    if( err || !users) console.log("male users found");
+    else users.forEach( function(user) {
+      dboutput += user.email;
+    } );
+    renderNow();
   });
+});
+
+router.post('/submit', function(req, res) {
+  var user = req.body.user;
+
+  function renderNow() {
+    res.render('submit', { title: 'submit' });
+  }
+
+  renderNow();
 });
 
 module.exports = router;
