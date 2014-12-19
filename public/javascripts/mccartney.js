@@ -19,9 +19,8 @@ function renumerate () {
 
 function getorder() {
     //$(".active").children("a").attr("id");
-    var ele = "";
-    $("#sortable").children("li").map(function (index, eli) {
-        ele += eli.getAttribute("id");
-    });
-    return ele;
+
+    return $.makeArray($("#sortable").children("li").map(function (index, eli) {
+        return eli.getAttribute("id");
+    })).join(",");
 }
