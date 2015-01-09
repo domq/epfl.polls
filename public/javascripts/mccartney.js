@@ -6,9 +6,20 @@ $(function() {
     .sortable({update: function( event, ui ) {renumerate();} });
 
     $( "#btnSubmit" ).click(function( event ) {
-        //xmlhttpPost("/calc");
-        alert(getorder());
+        //xmlhttpPost("/calc")
         event.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/submit",
+            data: {
+                order: getorder(),
+                user: $("#user").val()
+            }
+        }).done(function () {
+            alert("Thanks, bye");
+        }).fail(function () {
+            alert("Whoops");
+        });
     });
 });
 
@@ -22,5 +33,5 @@ function getorder() {
 
     return $.makeArray($("#sortable").children("li").map(function (index, eli) {
         return eli.getAttribute("id");
-    })).join(",");
+    }));
 }
