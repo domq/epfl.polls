@@ -12,8 +12,10 @@ $(function() {
             type: "POST",
             url: "/submit",
             data: {
-                order: getorder(),
-                user: $("#user").val()
+                form: JSON.stringify({
+                    order: getorder(),
+                    user: $("#user").val()
+                })
             }
         }).done(function () {
             alert("Thanks, bye");

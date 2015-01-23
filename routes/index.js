@@ -34,7 +34,7 @@ router.post('/submit', function(req, res) {
   function renderNow() {
     res.render('submit', { title: 'submit' });
   }
-  db.pollsAnswer.save({order: req.body.order, user: req.body.user}, function(err, saved) {
+  db.pollsAnswer.save(JSON.parse(req.body.form), function(err, saved) {
     if( err || !saved ) console.log("Poll not saved");
     else console.log("Poll saved");
   });
