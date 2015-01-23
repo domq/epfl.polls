@@ -1,6 +1,19 @@
 /**
  * New module.
  */
+function jsonpost(params) {
+    var ajaxParams = {};
+    $.extend(ajaxParams, params);
+    $.extend(ajaxParams, {
+        type: "POST",
+        contentType: "application/json;charset=UTF-8"
+    });
+    if (! (ajaxParams.data instanceof String)) {
+        ajaxParams.data = JSON.stringify(ajaxParams.data);
+    }
+    return $.ajax(ajaxParams);
+};
+
 $(function() {
     $("#sortable")
     .sortable({update: function( event, ui ) {renumerate();} });
@@ -8,14 +21,11 @@ $(function() {
     $( "#btnSubmit" ).click(function( event ) {
         //xmlhttpPost("/calc")
         event.preventDefault();
-        $.ajax({
-            type: "POST",
+        jsonpost({
             url: "/submit",
             data: {
-                form: JSON.stringify({
-                    order: getorder(),
-                    user: $("#user").val()
-                })
+                order: getorder(),
+                user: $("#user").val()
             }
         }).done(function () {
             alert("Thanks, bye");

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var databaseUrl = "mydb"; // "username:password@example.com/mydb"
-var collections = ["users", "pollsAnswer"]
+var collections = ["users", "pollsAnswer"];
 var db = require("mongojs").connect(databaseUrl, collections);
 
 /* GET home page. */
@@ -30,11 +30,12 @@ router.get('/admin', function(req, res) {
 
 
 router.post('/submit', function(req, res) {
-  var user = req.body.user;
+  var posted = req.body;
+  var user = posted.user;
   function renderNow() {
     res.render('submit', { title: 'submit' });
   }
-  db.pollsAnswer.save(JSON.parse(req.body.form), function(err, saved) {
+  db.pollsAnswer.save(posted, function(err, saved) {
     if( err || !saved ) console.log("Poll not saved");
     else console.log("Poll saved");
   });
