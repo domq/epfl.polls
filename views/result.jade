@@ -1,0 +1,10 @@
+//
+   Created by dom on 30.01.15.
+
+extends layout
+block content
+   h1= title
+   p Welcome to #{title}
+   p Welcome to #{pollsAnswers}
+   each tally, activity in pollsAnswers
+     p #{activity},#{tally}

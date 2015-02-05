@@ -16,16 +16,23 @@ router.get('/admin', function(req, res) {
     res.render('admin', { title: 'Admin', databaseContents: dboutput, pollsAnswers: pollsAnswers });
   }
 
-  db.users.find({sex: "male"}, function(err, users) {
-    if( err || !users) console.log("male users found");
-    else users.forEach( function(user) {
-      dboutput += user.email;
-    } );
-    db.pollsAnswer.find({}, function(err, pollsAnswers) {
-      if( err || !pollsAnswers) console.log("male users found");
-      else renderNow(pollsAnswers);
-    });
+  db.pollsAnswer.find({}, function(err, pollsAnswers) {
+    if( err || !pollsAnswers) console.log("poll answer found");
+    else renderNow(pollsAnswers);
   });
+});
+
+router.get('/result', function(req, res) {
+  var dboutput="";
+  function renderNow(pollsResults) {
+    res.render('result', { title: 'Result', pollsAnswers: pollsResults });
+  }
+  //db.pollsAnswer.find({"food":5, "conf": 0, "sport": 4, "team": 4}).count()
+  db.pollsAnswer.find({}).count(
+    function (err, countAnswer) {
+      renderNow({total: countAnswer})
+    }
+  )
 });
 
 
