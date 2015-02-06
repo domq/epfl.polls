@@ -27,14 +27,25 @@ router.get('/result', function(req, res) {
   function renderNow(pollsResults) {
     res.render('result', { title: 'Result', pollsAnswers: pollsResults });
   }
-  //db.pollsAnswer.find({"food":5, "conf": 0, "sport": 4, "team": 4}).count()
-  db.pollsAnswer.find({}).count(
-    function (err, countAnswer) {
-      renderNow({total: countAnswer})
-    }
+  db.pollsAnswer.mapReduce(
+      function(){emit(this.order[0], 1)},
+      function(key,values){return Array.sum(values)},
+      {out: {inline: 1}},
+      function (err, mapReduced) {
+          res.render('result', { title: 'Result', results: mapReduced });
+      }
   )
+
 });
 
+router.get('/init', function(req, res) {
+    var entry = {"order":["food","team","conf","sport"],"user":"toto"};
+    db.pollsAnswer.save(entry, function(err, saved) {
+        if( err || !saved ) console.log("Entry not saved");
+        else console.log("Entry saved");
+    });
+    res.render('submit', { title: 'submit' });
+});
 
 router.post('/submit', function(req, res) {
   var posted = req.body;

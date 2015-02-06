@@ -3,8 +3,8 @@
 
 extends layout
 block content
-   h1= title
-   p Welcome to #{title}
-   p Welcome to #{pollsAnswers}
-   each tally, activity in pollsAnswers
-     p #{activity},#{tally}
+    h1= title
+    p Welcome to #{title}
+
+    for result in results
+        p #{result._id} #{result.value}
