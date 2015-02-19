@@ -3,6 +3,8 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+    if user
+        #{user}
 
   block poll
     h1 Sortie d'équipe

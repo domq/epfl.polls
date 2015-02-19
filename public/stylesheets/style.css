@@ -50,3 +50,9 @@ li#team {
 textarea {
   float: right;
 }
+table {
+  border: solid 1px #000;
+}
+table td {
+  border: solid 1px #000;
+}

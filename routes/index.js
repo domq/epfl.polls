@@ -1,3 +1,6 @@
+var passport = require('passport');
+
+
 var express = require('express');
 var router = express.Router();
 
@@ -7,13 +10,30 @@ var db = require("mongojs").connect(databaseUrl, collections);
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Polls' });
+  res.render('index', { title: 'Polls', user: req.user });
 });
 
-router.get('/admin', function(req, res) {
+
+var tequila = require('passport-tequila');
+var myStrategy = new tequila.Strategy({
+        service: "DOJO Polls",  // Appears on Tequila login screen
+        request: ["displayname", "firstname"],  // Personal info to fetch
+    },
+    function myVerify(accessToken, refreshToken, profile, done) {
+// Pretend the verification is asynchronous (as would be required
+// e.g. if using a database):
+        process.nextTick(function () {
+            done(null, profile);
+        });
+    }
+);
+passport.use(myStrategy);
+
+
+router.get('/admin',  myStrategy.ensureAuthenticated, function(req, res) {
   var dboutput="";
   function renderNow(pollsAnswers) {
-    res.render('admin', { title: 'Admin', databaseContents: dboutput, pollsAnswers: pollsAnswers });
+    res.render('admin', { title: 'Admin', user: req.user.displayName, databaseContents: dboutput, pollsAnswers: pollsAnswers });
   }
 
   db.pollsAnswer.find({}, function(err, pollsAnswers) {
@@ -22,7 +42,7 @@ router.get('/admin', function(req, res) {
   });
 });
 
-router.get('/result', function(req, res) {
+router.get('/results', function(req, res) {
   var dboutput="";
   function renderNow(pollsResults) {
     res.render('result', { title: 'Result', pollsAnswers: pollsResults });
@@ -62,3 +82,5 @@ router.post('/submit', function(req, res) {
 });
 
 module.exports = router;
+
+router.get('/logout', myStrategy.globalLogout("/"));

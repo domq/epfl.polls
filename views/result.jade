@@ -6,5 +6,9 @@ block content
     h1= title
     p Welcome to #{title}
 
-    for result in results
-        p #{result._id} #{result.value}
+    table
+
+        for  result in results
+           tr
+                td #{result._id}
+                td #{result.value}
