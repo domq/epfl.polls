@@ -6,8 +6,10 @@ block content
     h1= title
     p Welcome to #{title}
 
-    table
-
+    table(id="databasePyjama" class="table table-striped")
+        tr
+            th Type
+            th Vote Number
         for  result in results
            tr
                 td #{result._id}

@@ -9,14 +9,18 @@ block content
     p Even if you are not logged in, you can see the database contents!
 
     p #{databaseContents}
-    table(id="databasePyjama" style="border: 1px solid")
+    table(id="databasePyjama" class="table table-striped")
+        tr
+            th User id
+            th Data
+
         for poll in pollsAnswers
             tr
-                td(style="border: 1px solid")
+                td
                    span &lt;
                    = poll.user
                    span &gt;
-                td(style="border: 1px solid")
+                td
                     span &lt;
                     = JSON.stringify(poll)
                     span &gt;

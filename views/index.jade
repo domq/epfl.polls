@@ -1,25 +1,23 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}, #{user.displayName}
+    h1= title
+    p Welcome to #{title}, #{user.displayName}
 
-  block poll
-    h1 Sortie d'équipe
-    p Quel(s) genre(s) d'activité(s) préférez-vous pour la sortie d'équipe ?
+    block poll
+        h2 Sortie d'équipe
+        p Quel(s) genre(s) d'activité(s) préférez-vous pour la sortie d'équipe ?
 
     form(action="/submit" method="post")
-      ul(id="sortable")
-        li(id="team")
-          label activité en équipe (karting, etc)
-          textarea
-        li(id="food")
-          label restaurant
-          textarea
-        li(id="conf")
-          label conférence
-          textarea
-        li(id="sport")
-          label activité sportive
-          textarea
-      input(type="button" id="btnSubmit" value="Submit")
+        ul(id="sortable")
+            li(id="team")
+                label activité en équipe (karting, etc)
+            li(id="food")
+                label restaurant
+            li(id="conf")
+                label conférence
+            li(id="sport")
+                label activité sportive
+
+    div(class="clearfix")
+    button(type="button", class="btn btn-primary btn-lg", id="btnSubmit") Vote !
