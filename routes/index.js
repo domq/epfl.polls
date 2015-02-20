@@ -8,12 +8,6 @@ var databaseUrl = "mydb"; // "username:password@example.com/mydb"
 var collections = ["users", "pollsAnswer"];
 var db = require("mongojs").connect(databaseUrl, collections);
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Polls', user: req.user });
-});
-
-
 var tequila = require('passport-tequila');
 var myStrategy = new tequila.Strategy({
         service: "DOJO Polls",  // Appears on Tequila login screen
@@ -29,8 +23,12 @@ var myStrategy = new tequila.Strategy({
 );
 passport.use(myStrategy);
 
+/* GET home page. */
+router.get('/', myStrategy.ensureAuthenticated, function(req, res) {
+    res.render('index', { title: 'Polls', user: req.user });
+});
 
-router.get('/admin',  myStrategy.ensureAuthenticated, function(req, res) {
+router.get('/admin', myStrategy.ensureAuthenticated, function(req, res) {
   var dboutput="";
   function renderNow(pollsAnswers) {
     res.render('admin', { title: 'Admin', user: req.user.displayName, databaseContents: dboutput, pollsAnswers: pollsAnswers });
@@ -67,16 +65,31 @@ router.get('/init', function(req, res) {
     res.render('submit', { title: 'submit' });
 });
 
-router.post('/submit', function(req, res) {
+router.post('/submit', myStrategy.ensureAuthenticated, function(req, res) {
   var posted = req.body;
-  var user = posted.user;
+  posted.user = req.user.id;
+
   function renderNow() {
     res.render('submit', { title: 'submit' });
   }
-  db.pollsAnswer.save(posted, function(err, saved) {
-    if( err || !saved ) console.log("Poll not saved");
-    else console.log("Poll saved");
-  });
+  var oldStyleVotes = false;
+  if (oldStyleVotes) {
+
+      db.pollsAnswer.save(posted, function(err, saved) {
+          if( err || !saved ) console.log("Poll not saved");
+          else console.log("Poll saved");
+      });
+
+  } else {
+      db.runCommand(
+          {
+              findAndModify: "pollsAnswer",
+              query: {user: posted.user},
+              update: posted,
+              upsert: true
+          }
+      );
+  }
 
   renderNow();
 });

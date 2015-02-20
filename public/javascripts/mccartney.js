@@ -24,8 +24,7 @@ $(function() {
         jsonpost({
             url: "/submit",
             data: {
-                order: getorder(),
-                user: $("#user").val()
+                order: getorder()
             }
         }).done(function () {
             alert("Thanks, bye");

@@ -2,9 +2,7 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-    if user
-        #{user}
+  p Welcome to #{title}, #{user.displayName}
 
   block poll
     h1 Sortie d'équipe
@@ -24,5 +22,4 @@ block content
         li(id="sport")
           label activité sportive
           textarea
-      input(type="text" name="user" id="user")
-      input(type="button" id="btnSubmit")
+      input(type="button" id="btnSubmit" value="Submit")
