@@ -1,11 +1,15 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
-    script(src = "//code.jquery.com/ui/1.11.2/jquery-ui.js")
-    script(src="/javascripts/mccartney.js")
-
-  body
-    block content
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+        link(rel='stylesheet', href='/stylesheets/bootstrap-theme.min.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(src="/javascripts/bootstrap.min.js")
+        script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+        script(src = "//code.jquery.com/ui/1.11.2/jquery-ui.js")
+        script(src="/javascripts/mccartney.js")
+    body
+        include ./menu.jade
+        block content
+        include ./footer.jade
