@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({
     secret: 'secret',
-    store: new MongoStore({db: 'user_session'}),
+    store: new MongoStore({db: 'user_session'})c,
     resave: true,
     saveUninitialized: true
 }));
