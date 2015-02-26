@@ -1,6 +1,4 @@
 var passport = require('passport');
-
-
 var express = require('express');
 var router = express.Router();
 
@@ -14,8 +12,8 @@ var myStrategy = new tequila.Strategy({
         request: ["displayname", "firstname"],  // Personal info to fetch
     },
     function myVerify(accessToken, refreshToken, profile, done) {
-// Pretend the verification is asynchronous (as would be required
-// e.g. if using a database):
+        // Pretend the verification is asynchronous (as would be required
+        // e.g. if using a database):
         process.nextTick(function () {
             done(null, profile);
         });
@@ -41,10 +39,6 @@ router.get('/admin', myStrategy.ensureAuthenticated, function(req, res) {
 });
 
 router.get('/results', function(req, res) {
-  var dboutput="";
-  function renderNow(pollsResults) {
-    res.render('result', { title: 'Result', pollsAnswers: pollsResults });
-  }
   db.pollsAnswer.mapReduce(
       function(){emit(this.order[0], 1)},
       function(key,values){return Array.sum(values)},
@@ -53,7 +47,6 @@ router.get('/results', function(req, res) {
           res.render('result', { title: 'Result', results: mapReduced });
       }
   )
-
 });
 
 router.get('/init', function(req, res) {
@@ -90,10 +83,8 @@ router.post('/submit', myStrategy.ensureAuthenticated, function(req, res) {
           }
       );
   }
-
   renderNow();
 });
 
 module.exports = router;
-
 router.get('/logout', myStrategy.globalLogout("/"));
