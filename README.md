@@ -7,7 +7,7 @@ epfl.polls is a basic on-line poll/survey application written in node.js with ex
 $ git clone https://github.com/domq/epfl.polls.git
 $ cd epfl.polls
 $ npm install
-$ node app.js
+$ node bin/www
 ```
 
 ## Configuration
