@@ -1,6 +1,11 @@
 # Installation
 
-<code>npm install passport passport-tequila mongodb stylus express jade express-session connect-mongo<code>
+```
+$ git clone https://github.com/domq/epfl.polls.git
+$ cd epfl.polls
+$ npm install
+$ node app.js
+```
 
 ## Configuration
 
