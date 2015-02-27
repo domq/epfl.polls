@@ -1,3 +1,6 @@
+# About
+epfl.polls is a basic on-line poll/survey application written in node.js with express, jade, stylus, passport and some other useful package.
+
 # Installation
 
 ```
