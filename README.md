@@ -1,6 +1,14 @@
+# About
+epfl.polls is a basic on-line poll/survey application written in node.js with express, jade, stylus, passport and some other useful package.
+
 # Installation
 
-<code>npm install passport passport-tequila mongodb stylus express jade express-session connect-mongo<code>
+```
+$ git clone https://github.com/domq/epfl.polls.git
+$ cd epfl.polls
+$ npm install
+$ node app.js
+```
 
 ## Configuration
 
