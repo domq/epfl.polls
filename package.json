@@ -1,6 +1,6 @@
 {
-  "name": "polls",
-  "version": "0.0.0",
+  "name": "EPFL.polls",
+  "version": "0.0.4",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -13,6 +13,32 @@
     "serve-favicon": "~2.1.3",
     "debug": "~2.0.0",
     "jade": "~1.6.0",
-    "stylus": "0.42.3"
-  }
+    "stylus": "0.42.3",
+    "passport": "*",
+    "passport-tequila": "^0.1.2",
+    "mongodb": "*",
+    "mongojs": "*",
+    "express-session": "*",
+    "connect-mongo": "*",
+    "bson": "*",
+    "node-gyp": "*"
+  },
+  "description": "<code>npm install passport passport-tequila mongodb stylus express jade express-session connect-mongo<code>",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/domq/epfl.polls.git"
+  },
+  "keywords": [
+    "epfl",
+    "node",
+    "dojo"
+  ],
+  "author": "epfl dojo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/domq/epfl.polls/issues"
+  },
+  "homepage": "https://github.com/domq/epfl.polls"
 }
