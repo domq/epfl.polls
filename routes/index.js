@@ -44,7 +44,7 @@ router.get('/results', function(req, res) {
       function(key,values){return Array.sum(values)},
       {out: {inline: 1}},
       function (err, mapReduced) {
-          res.render('result', { title: 'Result', results: mapReduced });
+          res.render('result', { title: 'Results', results: mapReduced });
       }
   )
 });
