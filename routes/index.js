@@ -1,42 +1,18 @@
 var passport = require('passport');
+var tequila = require('../lib/tequila');
 var express = require('express');
 var router = express.Router();
+var db = require('../lib/db');
 
-var databaseUrl = "mydb"; // "username:password@example.com/mydb"
-var collections = ["users", "pollsAnswer"];
-var db = require("mongojs").connect(databaseUrl, collections);
 
-var tequila = require('passport-tequila');
-var myStrategy = new tequila.Strategy({
-        service: "DOJO Polls",  // Appears on Tequila login screen
-        request: ["displayname", "firstname"],  // Personal info to fetch
-    },
-    function myVerify(accessToken, refreshToken, profile, done) {
-        // Pretend the verification is asynchronous (as would be required
-        // e.g. if using a database):
-        process.nextTick(function () {
-            done(null, profile);
-        });
-    }
-);
-passport.use(myStrategy);
+passport.use(tequila.strategy);
 
 /* GET home page. */
-router.get('/', myStrategy.ensureAuthenticated, function(req, res) {
+router.get('/', tequila.strategy.ensureAuthenticated, function(req, res) {
     res.render('index', { title: 'Polls', user: req.user });
 });
 
-router.get('/admin', myStrategy.ensureAuthenticated, function(req, res) {
-  var dboutput="";
-  function renderNow(pollsAnswers) {
-    res.render('admin', { title: 'Admin', user: req.user.displayName, databaseContents: dboutput, pollsAnswers: pollsAnswers });
-  }
 
-  db.pollsAnswer.find({}, function(err, pollsAnswers) {
-    if( err || !pollsAnswers) console.log("poll answer found");
-    else renderNow(pollsAnswers);
-  });
-});
 
 router.get('/results', function(req, res) {
   db.pollsAnswer.mapReduce(
@@ -58,7 +34,7 @@ router.get('/init', function(req, res) {
     res.render('submit', { title: 'submit' });
 });
 
-router.post('/submit', myStrategy.ensureAuthenticated, function(req, res) {
+router.post('/submit', tequila.strategy.ensureAuthenticated, function(req, res) {
   var posted = req.body;
   posted.user = req.user.id;
 
@@ -86,5 +62,7 @@ router.post('/submit', myStrategy.ensureAuthenticated, function(req, res) {
   renderNow();
 });
 
-module.exports = router;
-router.get('/logout', myStrategy.globalLogout("/"));
+
+router.get('/logout', tequila.strategy.globalLogout("/"));
+
+module.exports.router = router;
