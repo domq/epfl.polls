@@ -4,7 +4,7 @@ var tequila = require('../lib/tequila');
 var db = require('../lib/db');
 
 
-router.get('/admin', tequila.strategy.ensureAuthenticated, function(req, res) {
+router.get('/', tequila.strategy.ensureAuthenticated, function(req, res) {
     var dboutput="";
     function renderNow(pollsAnswers) {
         res.render('admin', { title: 'Admin', user: req.user.displayName, databaseContents: dboutput, pollsAnswers: pollsAnswers });
