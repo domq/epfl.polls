@@ -4,7 +4,6 @@ var express = require('express');
 var router = express.Router();
 var db = require('../lib/db');
 
-
 passport.use(tequila.strategy);
 
 /* GET home page. */
@@ -12,18 +11,6 @@ router.get('/', tequila.strategy.ensureAuthenticated, function(req, res) {
     res.render('index', { title: 'Polls', user: req.user });
 });
 
-
-
-router.get('/results', function(req, res) {
-  db.pollsAnswer.mapReduce(
-      function(){emit(this.order[0], 1)},
-      function(key,values){return Array.sum(values)},
-      {out: {inline: 1}},
-      function (err, mapReduced) {
-          res.render('result', { title: 'Results', results: mapReduced });
-      }
-  )
-});
 
 router.get('/init', function(req, res) {
     var entry = {"order":["food","team","conf","sport"],"user":"toto"};
