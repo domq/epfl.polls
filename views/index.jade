@@ -5,19 +5,56 @@ block content
     p Welcome to #{title}, #{user.displayName}
 
     block poll
-        h2 Sortie d'équipe
-        p Quel(s) genre(s) d'activité(s) préférez-vous pour la sortie d'équipe ?
+        h2 Prochain DOJO
+        p Quel(s) genre(s) d'activité(s) souhaiteriez-vous pour le prochain Dojo ?
 
     form(action="/submit" method="post")
         ul(id="sortable")
-            li(id="team")
+            li(id="sba")
                 label activité en équipe (karting, etc)
-            li(id="food")
+            li(id="jma")
+                label activité en équipe (karting, etc)
+            li(id="sne1")
+                label activité en équipe (karting, etc)
+            li(id="sne2")
+                label activité en équipe (karting, etc)
+            li(id="sne3")
+                label activité en équipe (karting, etc)
+            li(id="sne4")
+                label activité en équipe (karting, etc)
+            li(id="sne5")
+                label activité en équipe (karting, etc)
+            li(id="sne6")
+                label activité en équipe (karting, etc)
+            li(id="sne7")
+                label activité en équipe (karting, etc)
+            li(id="sne8")
+                label activité en équipe (karting, etc)
+            li(id="dqu")
                 label restaurant
-            li(id="conf")
+            li(id="nbo1")
                 label conférence
-            li(id="sport")
+            li(id="nbo2")
                 label activité sportive
 
-    div(class="clearfix")
-    button(type="button", class="btn btn-primary btn-lg", id="btnSubmit") Vote !
+        div(class="centered")
+            button(type="button", class="btn btn-primary btn-lg", id="btnSubmit") Vote !
+
+        br
+        br
+        br
+    //
+        PROPOSALS --
+        * SBA:  Veut bosser JavaScript (côté client): jQuery mais aussi AngularJS.
+        * JMA:  Réussir des appels AJAX sur un serveur LAMP depuis une page Jahia.
+        * SNE:  - socket.io
+                - Angular.js (version 2 qui se pointe)
+                - code isomorphique avec des choses genre meteor.js, react.js, invisible.js (cf. http://isomorphic.net/ )
+                - Gestion multilangue... (est-ce qu'avec ça http://airbnb.github.io/polyglot.js/ ça pourrait aider...)
+                - TypeScript... Qu'est-ce que ça peut apporter (vu que ça sera la colonne vertébrale d'Angular 2)?
+                - Dojo django (par curiosité pour comparer avec ce que je connais)
+                - Dojo RoR  (à nouveau plus par curiosité que par réel besoin)
+                - continuer la partie Test qu'on avait commencé, mais qui c'était arrêté lamentablement
+        * DQU:  Jeux de carte (p.ex. poker) côté client
+        * NBO:  - exploiter les services offlines des browsers (Local DB, AppCache, ServiceWorker) p.ex. en faisant une todo list (http://www.html5rocks.com/en/features/storage, http://www.html5rocks.com/en/tutorials/appcache/beginner/, http://www.html5rocks.com/en/tutorials/service-worker/introduction/)
+                - recoder go.epfl.ch en utilisant node.js
