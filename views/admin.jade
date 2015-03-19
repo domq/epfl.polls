@@ -9,14 +9,14 @@ block content
         tr
             th User id
             th Data
-
-        for poll in pollsAnswers
-            tr
-                td
-                   span &lt;
-                   = poll.user
-                   span &gt;
-                td
-                    span &lt;
-                    = JSON.stringify(poll)
-                    span &gt;
+        if pollsAnswers
+            for poll in pollsAnswers
+                tr
+                    td
+                       span &lt;
+                       = poll.user
+                       span &gt;
+                    td
+                        span &lt;
+                        = JSON.stringify(poll)
+                        span &gt;
