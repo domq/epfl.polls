@@ -1,14 +1,10 @@
-body {
-  margin-bottom: 60px;
-}
 a {
   color: #00b7ff;
 }
-form {
-  height: 300px;
+.centered {
+  text-align: center;
 }
 form ul {
-  height: 60px;
   list-style: none;
 }
 form li {
@@ -24,6 +20,7 @@ form li {
   filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
   -webkit-filter: grayscale(1.0);
   cursor: move;
+  display: block;
 }
 form label {
   margin-right: 10px;
@@ -34,20 +31,47 @@ form li:hover {
   filter: none;
   -webkit-filter: none;
 }
-li#conf {
-  background-image: url("/images/Farm-Fresh_reseller_programm.png");
+li#sba {
+  background-image: url("/images/Farm-Fresh_google_adsense.png");
 }
-li#food {
-  background-image: url("/images/Farm-Fresh_chinese_noodle.png");
+li#jma {
+  background-image: url("/images/Farm-Fresh_toolbox.png");
 }
-li#sport {
-  background-image: url("/images/Farm-Fresh_sport_basketball.png");
+li#sne1 {
+  background-image: url("/images/Farm-Fresh_plugin.png");
 }
-li#team {
+li#sne2 {
+  background-image: url("/images/Farm-Fresh_brick_link.png");
+}
+li#sne3 {
+  background-image: url("/images/Farm-Fresh_android.png");
+}
+li#sne4 {
   background-image: url("/images/Farm-Fresh_gruppe5.png");
 }
+li#sne5 {
+  background-image: url("/images/Farm-Fresh_server_components.png");
+}
+li#sne6 {
+  background-image: url("/images/Farm-Fresh_pi_math.png");
+}
+li#sne7 {
+  background-image: url("/images/Farm-Fresh_toucan.png");
+}
+li#sne8 {
+  background-image: url("/images/Farm-Fresh_scripts.png");
+}
+li#dqu {
+  background-image: url("/images/Farm-Fresh_cards.png");
+}
+li#nbo1 {
+  background-image: url("/images/Farm-Fresh_google_adsense.png");
+}
+li#nbo2 {
+  background-image: url("/images/Farm-Fresh_storage.png");
+}
 #content {
-  padding: 60px 15px 0;
+  padding: 40px 25px 0px 25px;
 }
 .navbar-fixed-bottom {
   background-color: #f5f5f5;
