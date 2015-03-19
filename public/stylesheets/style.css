@@ -1,14 +1,10 @@
-body {
-  margin-bottom: 60px;
-}
 a {
   color: #00b7ff;
 }
-form {
-  height: 300px;
+.centered {
+  text-align: center;
 }
 form ul {
-  height: 60px;
   list-style: none;
 }
 form li {
@@ -23,12 +19,15 @@ form li {
   background-position: 14px 14px;
   filter: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0'><filter id='greyscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0' /></filter></svg>#greyscale");
   -webkit-filter: grayscale(1.0);
+  color: #000;
   cursor: move;
+  display: block;
 }
 form label {
   margin-right: 10px;
   background-color: #fff;
   cursor: inherit;
+  color: #05f;
 }
 form li:hover {
   filter: none;
@@ -47,7 +46,7 @@ li#team {
   background-image: url("/images/Farm-Fresh_gruppe5.png");
 }
 #content {
-  padding: 60px 15px 0;
+  padding: 40px 25px 0px 25px;
 }
 .navbar-fixed-bottom {
   background-color: #f5f5f5;

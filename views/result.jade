@@ -10,7 +10,8 @@ block content
         tr
             th Type
             th Vote Number
-        for  result in results
-           tr
-                td #{result._id}
-                td #{result.value}
+        if results
+            for  result in results
+                tr
+                    td #{result._id}
+                    td #{result.value}
