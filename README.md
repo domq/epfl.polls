@@ -13,6 +13,10 @@ $ cd epfl.polls
 $ npm install
 $ node bin/www
 ```
+Installation note: change the first command with the following if you just want to get the latest tagged version, with no branches and no history:
+```
+$ git clone --branch v0.9 --depth 1 --single-branch https://github.com/domq/epfl.polls.git
+```
 
 ## Configuration
 
